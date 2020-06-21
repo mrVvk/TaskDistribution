@@ -7,24 +7,38 @@ wReader = csv.reader(w_open)
 
     
 dl = list(tReader)
-# print(duty_list)
+Dl=[]
+for i in dl:
+    Dl.append(i[0])
+print(Dl)
+
 worker_list = list(wReader)
+print('worker list: \n', worker_list)
 
 duty_list = []
-for row in range(0,21,5):
-    duty_list.append(dl[row:row+5])
-# print(worker_list)
-# print(duty_list)
-print(duty_list)
-print(duty_list[3])
-worker_duties2do = {}
-# for i in range(1,25,5):
+# for row in range(0,21,5):
+#     duty_list.append(dl[row:row+5])
+#     print(dl[row])
+for row in range(0,len(Dl),len(worker_list)):
+    duty_list.append(Dl[row:row+5])
 
 
-# for i in worker_list:
-#     worker_duties2do.setdefault(i[0],duty_list)
+print('duty list: \n',duty_list)
 
-# print(worker_duties2do)
+
+ToDo = {}
+for i in range(len(duty_list)):
+    ToDo.setdefault(worker_list[i][0],duty_list[i])
+print(' ToDo: \n', ToDo)
+
+done = {}
+for worker in range(len(worker_list)):
+    done.setdefault(worker_list[worker][0], [])
+print('duties - done! \n', done)
+
+
+
+
 
 # smtpObj= smtplib.SMTP('smtp.gmail.com', 587)
 # smtpObj.ehlo()
